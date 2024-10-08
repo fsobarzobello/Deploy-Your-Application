@@ -55,7 +55,16 @@ app.post('/add', function (req, res) {
 app.post('/accounts', (req, res) => {
     const newAccount = {
         'name': req.body.name,
-        'email': req.body.email
+        'dob': req.body.dob,
+        'email': req.body.email,
+        'username': req.body.username,
+        'password': req.body.password,
+        'phone': req.body.phone,
+        'streetaddress': req.body.streetaddress,
+        'citystatezip': req.body.citystatezip,
+        'latitude': req.body.latitude,
+        'longitude': req.body.longitude,
+        'avatar': req.body.avatar
     };
     db.get('users').push(newAccount).write(); // Agrega el nuevo usuario a la base de datos
     res.json(newAccount); // Devuelve la nueva cuenta creada
