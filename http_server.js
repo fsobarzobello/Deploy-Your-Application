@@ -28,6 +28,10 @@ app.get('/data', function (req, res) {
     res.send(db.get('users').value());
 });
 
+app.get('/accounts', (req, res) => {
+    res.json(db.get('users').value()); 
+});
+
 // add user
 app.post('/add', function (req, res) {
     var user = {
@@ -46,6 +50,15 @@ app.post('/add', function (req, res) {
     db.get('users').push(user).write();
     console.log(db.get('users').value());
     res.send(db.get('users').value());
+});
+
+app.post('/accounts', (req, res) => {
+    const newAccount = {
+        'name': req.body.name,
+        'email': req.body.email
+    };
+    db.get('users').push(newAccount).write(); // Agrega el nuevo usuario a la base de datos
+    res.json(newAccount); // Devuelve la nueva cuenta creada
 });
 
 // start server
